@@ -22,6 +22,7 @@ console.log(len);
 */
 
 //---------------- CHALLENGE #4 -------------------
+/*
 var fs = require('fs');
 
 var len = 0;
@@ -30,3 +31,24 @@ fs.readFile(process.argv[2], 'utf8', (err,data) => {
     console.log(data.split('\n').length - 1);
 });
 //console.log("async called");
+*/
+
+//---------------- CHALLENGE #4 -------------------
+
+var fs = require('fs');
+var path = require('path');
+
+var dirPath = process.argv[2];
+var ext = "." + process.argv[3];
+
+fs.readdir(dirPath, 'utf8', (err, files) => {    
+    if(err != null) {
+        return console.error(err);
+    }
+    files.forEach(function(file) {
+        //console.log(path.extname(file));
+        if(path.extname(file) == ext) {
+            console.log(file);
+        }
+    }, this);
+});
