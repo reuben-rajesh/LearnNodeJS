@@ -33,7 +33,7 @@ fs.readFile(process.argv[2], 'utf8', (err,data) => {
 //console.log("async called");
 */
 
-//---------------- CHALLENGE #4 -------------------
+//---------------- CHALLENGE #5 -------------------
 
 var fs = require('fs');
 var path = require('path');
