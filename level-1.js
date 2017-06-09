@@ -34,7 +34,7 @@ fs.readFile(process.argv[2], 'utf8', (err,data) => {
 */
 
 //---------------- CHALLENGE #5 -------------------
-
+/*
 var fs = require('fs');
 var path = require('path');
 
@@ -51,4 +51,24 @@ fs.readdir(dirPath, 'utf8', (err, files) => {
             console.log(file);
         }
     }, this);
+});
+*/
+
+//---------------- CHALLENGE #6 -------------------
+
+var mods = require('./level-1-mod.js')
+
+var dirPath = process.argv[2];
+var ext = process.argv[3];
+
+mods(dirPath, ext, function(err, files)
+{
+    if(err) {
+        return console.log(err);
+    }
+    
+    files.forEach(function(file) {        
+            console.log(file);
+    }, this);
+    
 });
