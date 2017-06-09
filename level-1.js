@@ -75,7 +75,7 @@ mods(dirPath, ext, function(err, files)
 */
 
 //---------------- CHALLENGE #7 -------------------
-
+/*
 var http = require('http');
 
 var url = process.argv[2];
@@ -85,4 +85,53 @@ var req = http.get(url , function(res){
     res.on('data', console.log);
     res.on('error', console.error);    
 }).on('error', console.error);
+*/
 
+//---------------- CHALLENGE #8 -------------------
+
+var http = require('http');
+
+var url = process.argv[2];
+
+// ------------------- Approach #1 starts here -----------------------
+
+/*
+var req = http.get(url , function(res){
+    res.setEncoding('utf8');
+    var totalData = "";
+    res.on('data', (data) => {
+        totalData += data;                
+    });
+
+    res.on('error', console.error);
+
+    res.on('end', () =>{
+        console.log(totalData.length)
+        console.log(totalData);
+    });
+});
+*/ 
+
+// ------------------- Approach #1 ends here -----------------------
+
+
+// ------------------- Approach #2 starts here -----------------------
+
+var bl = require('bl');
+
+var req = http.get(url , function(res){
+    
+    res.pipe(bl(function (err,data){
+
+        if(err)
+        {
+            return console.error(err);
+        }
+         data = data.toString();
+        console.log(data.length);
+        console.log(data)
+    }));
+});
+
+
+// ------------------- Approach #2 ends here -----------------------
