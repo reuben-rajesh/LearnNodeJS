@@ -55,7 +55,7 @@ fs.readdir(dirPath, 'utf8', (err, files) => {
 */
 
 //---------------- CHALLENGE #6 -------------------
-
+/*
 var mods = require('./level-1-mod.js')
 
 var dirPath = process.argv[2];
@@ -72,3 +72,17 @@ mods(dirPath, ext, function(err, files)
     }, this);
     
 });
+*/
+
+//---------------- CHALLENGE #7 -------------------
+
+var http = require('http');
+
+var url = process.argv[2];
+
+var req = http.get(url , function(res){
+    res.setEncoding('utf8');
+    res.on('data', console.log);
+    res.on('error', console.error);    
+}).on('error', console.error);
+
