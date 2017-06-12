@@ -88,7 +88,7 @@ var req = http.get(url , function(res){
 */
 
 //---------------- CHALLENGE #8 -------------------
-
+/*
 var http = require('http');
 
 var url = process.argv[2];
@@ -116,7 +116,7 @@ var req = http.get(url , function(res){
 
 
 // ------------------- Approach #2 starts here -----------------------
-
+/*
 var bl = require('bl');
 
 var req = http.get(url , function(res){
@@ -135,3 +135,39 @@ var req = http.get(url , function(res){
 
 
 // ------------------- Approach #2 ends here -----------------------
+*/
+
+//---------------- CHALLENGE #9 -------------------
+
+var http = require('http');
+var bl = require('bl');
+var results = []
+var count = 0
+
+function httpGet(index)
+{    
+    http.get(process.argv[2+index] , function(res){
+    
+    res.pipe(bl(function (err,data){
+        if(err) {
+            return console.error(err);
+        }
+
+        results[index] = data.toString();
+        count++;
+
+        if(count == 3)
+            printResults();
+        }));
+    });
+}
+
+function printResults () {
+      for (var i = 0; i < 3; i++) {
+        console.log(results[i])
+    }
+}
+
+for (var index = 0; index < 3; index++) {
+    httpGet(index);    
+}
