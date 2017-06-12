@@ -8,6 +8,10 @@ var server = http.createServer(function(req, res){
             return data.toString().toUpperCase()
         })).pipe(res);
     }
+    else {
+        res.end("Provide a POST request");
+    }
+
 });
 
 server.listen(process.argv[2]);
